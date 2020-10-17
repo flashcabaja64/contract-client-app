@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 export function useFormFields(initialState) {
-  const [value, setValue] = useState(initialState);
+  const [values, setValues] = useState(initialState);
 
   return [
-    value,
-    function(e) { setValue({...value, [e.target.id]: e.target.value}) }
+    values,
+    function(e) { setValues({...values, [e.target.id]: e.target.value}) }
   ]
 }
