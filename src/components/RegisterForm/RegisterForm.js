@@ -2,6 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import ValidationError from '../ValidationError/ValidationError';
 import { useFormFields } from '../../libs/hooksLib';
 
 const RegisterForm = () => {
@@ -13,6 +14,7 @@ const RegisterForm = () => {
     password: '',
     confirmPass: ''
   })
+  //console.log(fields)
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
@@ -69,7 +71,7 @@ const RegisterForm = () => {
           </Form.Control>
         </Form.Group>
 
-        <Button variant="primary" type="submit">Login</Button>
+        <Button variant="primary" type="submit">Register</Button>
       </Form>
     </Container>
   )

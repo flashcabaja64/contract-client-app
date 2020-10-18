@@ -1,6 +1,7 @@
 import React from 'react';
-import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom'
+import { Nav, Navbar, Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import './Header.css'
 
 const Header = () => {
   return (
@@ -8,20 +9,15 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" fixed="sticky">
         <Navbar.Brand href="#home">Contract</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link>
-              <Link to='/'>Home</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to='/features'>Features</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to='/about'>About</Link>
-            </Nav.Link>
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              <Nav.Link as={Link} to='/features'>Features</Nav.Link>
+              <Nav.Link as={Link} to='/about'>About</Nav.Link>
           </Nav>
-          <Nav inline>
-            <Nav.Link>
-              <Link to='/login'>Login</Link>
-            </Nav.Link>
+          <Nav>
+            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+            <Button variant="primary" as={Link} to="/register">
+              Sign-Up
+            </Button>
           </Nav>
           {/*
           <Form inline>
