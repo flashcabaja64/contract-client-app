@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <>
       <Navbar bg="dark" variant="dark" fixed="sticky">
-        <Navbar.Brand href="#home">Contract</Navbar.Brand>
+        <Navbar.Brand href="/">Contract</Navbar.Brand>
           <Nav className="mr-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to='/features'>Features</Nav.Link>

@@ -2,7 +2,9 @@ import React from 'react';
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import './RegisterForm.css'
 import ValidationError from '../ValidationError/ValidationError';
+import ApiService from '../services/ApiService.js'
 import { useFormFields } from '../../libs/hooksLib';
 
 const RegisterForm = () => {
@@ -16,9 +18,14 @@ const RegisterForm = () => {
   })
   //console.log(fields)
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    ApiService.postRegister(fields);
+  }
+
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Form onSubmit={e => e.preventDefault()}>
+      <Form onSubmit={handleSubmit} className="col-4 col-lg-3">
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
