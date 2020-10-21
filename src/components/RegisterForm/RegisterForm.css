@@ -1,3 +1,13 @@
 input.form-control {
-  text-align:center
+  text-align: center
+}
+
+label.form-label {
+  text-align: left;
+  font-size: 0.8em;
+  line-height: 0;
+}
+
+.card-title, small {
+  text-align: center;
 }

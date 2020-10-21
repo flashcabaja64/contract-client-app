@@ -1,8 +1,7 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
 import './RegisterForm.css'
+import React from 'react';
+import { Form, Container, Button, Card } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import ValidationError from '../ValidationError/ValidationError';
 import ApiService from '../services/ApiService.js'
 import { useFormFields } from '../../libs/hooksLib';
@@ -25,61 +24,68 @@ const RegisterForm = () => {
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Form onSubmit={handleSubmit} className="col-4 col-lg-3">
-        <Form.Group controlId="firstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter First Name"
-            value={fields.firstName}
-            onChange={handleFieldChange}
-          > 
-          </Form.Control>
-        </Form.Group>
+      <Card style={{ width: '18rem' }}>
+        <Card.Body>
+          <Card.Title>Sign-Up</Card.Title>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter First Name"
+                value={fields.firstName}
+                onChange={handleFieldChange}
+              > 
+              </Form.Control>
+            </Form.Group>
 
-        <Form.Group controlId="lastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Last Name"
-            value={fields.lastName}
-            onChange={handleFieldChange}
-          >
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter Email"
-            value={fields.email}
-            onChange={handleFieldChange}
-          >
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter Password"
-            value={fields.password}
-            onChange={handleFieldChange}
-          >
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="confirmPass">
-          <Form.Label>Re-Enter Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Reenter Password"
-            value={fields.confirmPass}
-            onChange={handleFieldChange}
-          >
-          </Form.Control>
-        </Form.Group>
-
-        <Button variant="primary" type="submit">Register</Button>
-      </Form>
+            <Form.Group controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Last Name"
+                value={fields.lastName}
+                onChange={handleFieldChange}
+              >
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter Email"
+                value={fields.email}
+                onChange={handleFieldChange}
+              >
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                value={fields.password}
+                onChange={handleFieldChange}
+              >
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="confirmPass">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                value={fields.confirmPass}
+                onChange={handleFieldChange}
+              >
+              </Form.Control>
+            </Form.Group>
+            <Form.Group className="text-center">
+              <Button variant="primary" type="submit">Register</Button>
+            </Form.Group>
+            <Form.Text muted>Already Registered? <Link to="/login">Login</Link></Form.Text>
+          </Form>
+        </Card.Body>
+      </Card>
     </Container>
   )
 }
