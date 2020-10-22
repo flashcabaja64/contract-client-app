@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function ValidationError(props) {
+export default function ValidationError({message}) {
   const validationStyle = {
     color:'red'
   }
 
-  if(props.message) {
+  if(message) {
     return (
-      <div className="error" style={validationStyle}>{props.message}</div>
+      <div className="error" style={validationStyle}>{message}</div>
     )
   }
   return <></>

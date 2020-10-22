@@ -13,14 +13,46 @@ const RegisterForm = () => {
     lastName: '',
     email: '',
     password: '',
-    confirmPass: ''
+    confirmPass: '',
+    errorMsg: {}
   })
   //console.log(fields)
 
+  const validateForm = () => {
+    let fName = fields.firstName.trim();
+    let lName = fields.lastName.trim();
+    let letters = /^[A-Za-z]+$/
+    let errorMsg = {...handleFieldChange.errorMsg}
+
+    if(fName.length < 3) {
+      return errorMsg.firstName = 'Please enter more than 3 characters';
+    }
+    if(!letters.test(fName)) {
+      errorMsg.firstName = 'Please enter alpha characters only'
+    }
+    if(lName.length < 3) {
+      errorMsg.lastName = 'Please enter more than 3 characters';
+    }
+    if(!letters.test(lName)) {
+      errorMsg.lastName = 'Please enter alpha characters only'
+    }
+    if(fields.password !== fields.confirmPass) {
+      errorMsg.password = 'Passwords do not match'
+    }
+    console.log(errorMsg.firstName, fName)
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
-    ApiService.postRegister(fields);
+    validateForm()
+    // ApiService.postRegister({
+    //   firstName: fields.firstName,
+    //   lastName: fields.lastName,
+    //   email: fields.email,
+    //   password: fields.password
+    // });
   }
+  const { firstName } = fields.errorMsg
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
@@ -35,9 +67,11 @@ const RegisterForm = () => {
                 placeholder="Enter First Name"
                 value={fields.firstName}
                 onChange={handleFieldChange}
+                maxLength="35"
               > 
               </Form.Control>
             </Form.Group>
+            {firstName !== '' ? <div>{firstName}</div> : null}
 
             <Form.Group controlId="lastName">
               <Form.Label>Last Name</Form.Label>
@@ -46,6 +80,7 @@ const RegisterForm = () => {
                 placeholder="Enter Last Name"
                 value={fields.lastName}
                 onChange={handleFieldChange}
+                maxLength="35"
               >
               </Form.Control>
             </Form.Group>
