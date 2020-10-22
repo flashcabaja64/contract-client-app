@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useForm = (initialState) => {
-  const [values, setValues] = useState(initialState)
+const useForm = (initialState, callback, validate) => {
+  const [values, setValues] = useState(initialState);
+  const [errors, setErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -10,13 +12,21 @@ const useForm = (initialState) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Register Button Clicked!!')
+    setErrors(validate(values));
+    setIsSubmit(true);
   }
+
+  useEffect(() => {
+    if(Object.keys(errors).length === 0 && isSubmit) {
+      callback();
+    }
+  }, [errors])
 
   return {
     handleChange,
     handleSubmit,
-    values
+    values,
+    errors
   }
 }
 

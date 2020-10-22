@@ -1,35 +1,36 @@
 import './RegisterForm.css'
 import React from 'react';
 import { Form, Container, Button, Card } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useForm from '../../libs/useForm';
-//import ValidationError from '../ValidationError/ValidationError';
+import validateRegister from '../validations/validateRegister';
+import ValidationError from '../validations/ValidationError';
 //import ApiService from '../services/ApiService.js'
 
 const RegisterForm = () => {
 
-  const { handleChange, handleSubmit, values } = useForm(
+  const { handleChange, handleSubmit, values, errors } = useForm(
     {
       firstName: '',
       lastName: '',
       email: '',
       password: '',
       confirmPass: ''
-    }
+    },
+    submit,
+    validateRegister
   )
   //console.log(values)
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   validateForm()
-  //   ApiService.postRegister({
-  //     firstName: fields.firstName,
-  //     lastName: fields.lastName,
-  //     email: fields.email,
-  //     password: fields.password
-  //   });
-  // }
-  // const { firstName } = fields.errorMsg
+  function submit(){
+    console.log('Register Button Clicked!!')
+    // ApiService.postRegister({
+    //   firstName: values.firstName,
+    //   lastName: values.lastName,
+    //   email: values.email,
+    //   password: values.password
+    // });
+  }
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
@@ -45,9 +46,11 @@ const RegisterForm = () => {
                 value={values.firstName}
                 onChange={handleChange}
                 maxLength="35"
+                className={`${errors.firstName && 'inputError'}`}
               > 
               </Form.Control>
             </Form.Group>
+            {errors.firstName && <ValidationError message={errors.firstName}/>}
 
             <Form.Group controlId="lastName">
               <Form.Label>Last Name</Form.Label>
@@ -60,6 +63,8 @@ const RegisterForm = () => {
               >
               </Form.Control>
             </Form.Group>
+            {errors.lastName && <ValidationError message={errors.lastName}/>}
+
             <Form.Group controlId="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -70,6 +75,8 @@ const RegisterForm = () => {
               >
               </Form.Control>
             </Form.Group>
+            {errors.email && <ValidationError message={errors.email}/>}
+
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -90,6 +97,7 @@ const RegisterForm = () => {
               >
               </Form.Control>
             </Form.Group>
+            {errors.password && <ValidationError message={errors.password}/>}
             <Form.Group className="text-center">
               <Button variant="primary" type="submit">Register</Button>
             </Form.Group>
