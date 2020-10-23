@@ -1,9 +1,9 @@
 export default function validateRegister(values) {
   let errors = {};
-
   let fName = values.firstName.trim();
   let lName = values.lastName.trim();
   let letters = /^[A-Za-z]+$/
+  let emails = /\S+@\S+\.\S+/
 
   //First Name validation errors
   if(fName.length < 3) {
@@ -23,7 +23,7 @@ export default function validateRegister(values) {
   //Email validation errors
   if(values.email.length === 0) {
     errors.email = 'Email address is required';
-  } else if(!/\S+@\S+\.\S+/.test(values.email)) {
+  } else if(!emails.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
   //Password validation errors

@@ -8,7 +8,6 @@ import ValidationError from '../validations/ValidationError';
 //import ApiService from '../services/ApiService.js'
 
 const RegisterForm = () => {
-
   const { handleChange, handleSubmit, values, errors } = useForm(
     {
       firstName: '',
@@ -98,6 +97,7 @@ const RegisterForm = () => {
               </Form.Control>
             </Form.Group>
             {errors.password && <ValidationError message={errors.password}/>}
+
             <Form.Group className="text-center">
               <Button variant="primary" type="submit">Register</Button>
             </Form.Group>
