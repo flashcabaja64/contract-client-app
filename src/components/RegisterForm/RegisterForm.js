@@ -1,11 +1,11 @@
 import './RegisterForm.css'
 import React from 'react';
 import { Form, Container, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useForm from '../../libs/useForm';
 import validateRegister from '../validations/validateRegister';
 import ValidationError from '../validations/ValidationError';
-//import ApiService from '../services/ApiService.js'
+import ApiService from '../services/ApiService.js'
 
 const RegisterForm = () => {
   const { handleChange, handleSubmit, values, errors } = useForm(
@@ -19,16 +19,23 @@ const RegisterForm = () => {
     submit,
     validateRegister
   )
-  //console.log(values)
+  let history = useHistory()
 
-  function submit(){
-    console.log('Register Button Clicked!!')
-    // ApiService.postRegister({
-    //   firstName: values.firstName,
-    //   lastName: values.lastName,
-    //   email: values.email,
-    //   password: values.password
-    // });
+  function submit() {
+    ApiService.postRegister({
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password
+    }).then(data => {
+      console.log(data)
+      if(data.toLowerCase().includes('failure')) {
+        return history.push('/')
+      } else if(data.toLowerCase().includes('success')) {
+        return history.push('/login')
+      } 
+      
+    })
   }
 
   return (
@@ -63,7 +70,7 @@ const RegisterForm = () => {
               </Form.Control>
             </Form.Group>
             {errors.lastName && <ValidationError message={errors.lastName}/>}
-
+            
             <Form.Group controlId="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -109,4 +116,4 @@ const RegisterForm = () => {
   )
 }
 
-export default RegisterForm
+export default RegisterForm;

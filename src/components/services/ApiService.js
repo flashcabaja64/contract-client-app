@@ -12,7 +12,7 @@ const ApiService = {
           return Promise.reject(error);
         } else return data 
       })
-      .then(data => console.log(data))
+      .then(data => data.message)
       .catch(err => console.log(err))
   }
 }
