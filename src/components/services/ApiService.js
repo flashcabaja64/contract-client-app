@@ -6,11 +6,11 @@ const ApiService = {
       body: JSON.stringify(formFields)
     })
       .then(async res => {
-        const data = res.json(); 
-        if(!res.ok) { 
-          const error = (data && data.message) || res.status;
-          return Promise.reject(error);
-        } else return data 
+        const data = await res.json(); 
+        if(!res.ok || res.status === 400) { 
+         return data
+        }
+        return data 
       })
       .then(data => data.message)
       .catch(err => console.log(err))

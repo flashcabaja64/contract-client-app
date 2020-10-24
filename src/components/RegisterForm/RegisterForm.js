@@ -1,5 +1,5 @@
 import './RegisterForm.css'
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Container, Button, Card } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import useForm from '../../libs/useForm';
@@ -19,7 +19,8 @@ const RegisterForm = () => {
     submit,
     validateRegister
   )
-  let history = useHistory()
+  const history = useHistory()
+  const [resStatus, setResStatus] = useState('')
 
   function submit() {
     ApiService.postRegister({
@@ -30,11 +31,13 @@ const RegisterForm = () => {
     }).then(data => {
       console.log(data)
       if(data.toLowerCase().includes('failure')) {
-        return history.push('/')
+        setResStatus('Email has already been registered')
+        //return history.push('/')
       } else if(data.toLowerCase().includes('success')) {
-        return history.push('/login')
+        console.log(resStatus)
+        setResStatus('Email registration successful. Redirecting you to the Login page')
+        setTimeout(() => history.push('/login'), 3000)
       } 
-      
     })
   }
 
@@ -104,6 +107,7 @@ const RegisterForm = () => {
               </Form.Control>
             </Form.Group>
             {errors.password && <ValidationError message={errors.password}/>}
+            {resStatus !== '' && <ValidationError message={resStatus}/>}
 
             <Form.Group className="text-center">
               <Button variant="primary" type="submit">Register</Button>
