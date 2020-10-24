@@ -22,7 +22,6 @@ const Login = () => {
   }
 
   return (
-    
     <Container fluid className="d-flex justify-content-center align-items-center">
       <Form onSubmit={loginSubmit}>
         <Form.Group controlId="email">

@@ -7,6 +7,9 @@ const TokenService = {
   },
   clearAuthToken() {
     window.localStorage.removeItem('currentUser')
+  },
+  hasAuthToken() {
+    return !!TokenService.getAuthToken();
   }
 }
 

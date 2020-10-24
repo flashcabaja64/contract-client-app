@@ -4,7 +4,8 @@ export default function validateRegister(values) {
   let lName = values.lastName.trim();
   let letters = /^[A-Za-z]+$/
   let emails = /\S+@\S+\.\S+/
-
+  //let REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/
+  
   //First Name validation errors
   if(fName.length < 3) {
     errors.firstName = 'Please enter more than 3 characters';
@@ -33,7 +34,8 @@ export default function validateRegister(values) {
     errors.password = 'Password length cannot exceed 14 characters'
   } else if ((values.password.length || values.confirmPass.length) < 8) {
     errors.password = 'Password must be more than 8 characters'
-  }
+  } 
+
   if(values.password !== values.confirmPass) {
     errors.password = 'Passwords do not match'
   }

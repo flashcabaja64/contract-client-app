@@ -43,9 +43,9 @@ const RegisterForm = () => {
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '25rem' }}>
         <Card.Body>
-          <Card.Title>Sign-Up</Card.Title>
+          <Card.Header>Sign-Up</Card.Header>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="firstName">
               <Form.Label>First Name</Form.Label>
@@ -69,6 +69,7 @@ const RegisterForm = () => {
                 value={values.lastName}
                 onChange={handleChange}
                 maxLength="35"
+                className={`${errors.lastName && 'inputError'}`}
               >
               </Form.Control>
             </Form.Group>
@@ -81,6 +82,7 @@ const RegisterForm = () => {
                 placeholder="Enter Email"
                 value={values.email}
                 onChange={handleChange}
+                className={`${errors.email && 'inputError'}`}
               >
               </Form.Control>
             </Form.Group>
@@ -93,6 +95,7 @@ const RegisterForm = () => {
                 placeholder="Enter Password"
                 value={values.password}
                 onChange={handleChange}
+                className={`${errors.password && 'inputError'}`}
               >
               </Form.Control>
             </Form.Group>
@@ -103,6 +106,7 @@ const RegisterForm = () => {
                 placeholder="Confirm Password"
                 value={values.confirmPass}
                 onChange={handleChange}
+                className={`${errors.password && 'inputError'}`}
               >
               </Form.Control>
             </Form.Group>
