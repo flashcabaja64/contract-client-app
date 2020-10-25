@@ -1,5 +1,7 @@
 input.form-control {
-  text-align: center
+  text-align: left;
+  background-color:#d3d3d34f;
+  color:black;
 }
 
 label.form-label {
@@ -8,7 +10,7 @@ label.form-label {
   line-height: 0;
 }
 
-.card-title, small {
+.card-title,small {
   text-align: center;
 }
 
@@ -18,4 +20,14 @@ label.form-label {
 
 .form-group {
   margin-bottom: 0.5rem;
+}
+
+button.submit_btn {
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 3px 15px 0px rgba(0,123,255,0.7); 
+  box-shadow: 0px 3px 15px 0px rgba(0,123,255,0.7);
+}
+
+h1 {
+  text-align:center;
 }
