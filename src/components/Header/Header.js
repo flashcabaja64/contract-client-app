@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+import TokenService from '../services/TokenService';
 import { Nav, Navbar, Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css'
 
 const Header = () => {
+  const User = useContext(UserContext)
+
+  const renderLogoutLink = () => {
+    return (
+      <>
+        <Nav.Link 
+          as={Link} 
+          to='/'
+          onClick={() => User.processLogout()}
+        >
+          Logout
+        </Nav.Link>
+      </>
+    )
+  };
+
+  const renderLoginLink = () => {
+    return (
+      <>
+        <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+        <Button variant="primary" as={Link} to="/register">
+          Sign-Up
+        </Button>
+      </>
+    )
+  };
+
   return (
     <>
       <Navbar bg="dark" variant="dark" fixed="sticky">
@@ -14,10 +43,10 @@ const Header = () => {
               <Nav.Link as={Link} to='/about'>About</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-            <Button variant="primary" as={Link} to="/register">
-              Sign-Up
-            </Button>
+            {TokenService.hasAuthToken() 
+              ? renderLogoutLink() 
+              : renderLoginLink()
+            }
           </Nav>
           {/*
           <Form inline>
@@ -30,4 +59,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

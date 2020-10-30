@@ -1,53 +1,61 @@
 import './Login.css'
-import React from 'react';
-import Form from 'react-bootstrap/Form'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
+import React, { useContext } from 'react';
+import { Form, Container, Button, Card } from 'react-bootstrap'
 import { useFormFields } from '../../libs/hooksLib';
 import ApiService from '../services/ApiService'
-import TokenService from '../services/TokenService'
+import { UserContext } from '../../contexts/UserContext'
+//import TokenService from '../services/TokenService'
 
 const Login = () => {
   const [fields, handleFieldChange] = useFormFields({
-    email: '',
+    user_email: '',
     password: ''
   })
+
+  const User = useContext(UserContext);
 
   const loginSubmit= (e) => {
     e.preventDefault();
     ApiService.postLogin(fields).then(data => {
-      TokenService.saveAuthToken(data.access_token)
+      //TokenService.saveAuthToken(data.access_token)
+      User.processLogin(data.access_token)
       console.log(data)
     })
   }
 
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Form onSubmit={loginSubmit}>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Email"
-            value={fields.email}
-            onChange={handleFieldChange}
-          > 
-          </Form.Control>
-        </Form.Group>
+      <Card style={{ width: '20rem'}}> 
+        <Card.Body>
+        <Card.Title>Login</Card.Title> 
+          <Form onSubmit={loginSubmit}>
+            <Form.Group controlId="user_email">
+              <Form.Label>Username/Email</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Username/Email"
+                value={fields.user_email}
+                onChange={handleFieldChange}
+              > 
+              </Form.Control>
+            </Form.Group>
 
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter Password"
-            value={fields.password}
-            onChange={handleFieldChange}
-          >
-          </Form.Control>
-        </Form.Group>
-
-        <Button variant="primary" type="submit">Login</Button>
-      </Form>
+            <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                value={fields.password}
+                onChange={handleFieldChange}
+              >
+              </Form.Control>
+            </Form.Group>
+            <Form.Group className="text-center">
+              <Button variant="primary" type="submit">Login</Button>
+            </Form.Group>
+          </Form>
+          </Card.Body> 
+      </Card>   
     </Container>
   )
 }

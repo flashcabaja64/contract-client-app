@@ -9,7 +9,7 @@ const TokenService = {
     window.localStorage.removeItem('currentUser')
   },
   hasAuthToken() {
-    return !!TokenService.getAuthToken();
+    return !TokenService.getAuthToken();
   }
 }
 
