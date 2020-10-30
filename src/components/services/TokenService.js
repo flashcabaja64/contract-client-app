@@ -3,13 +3,13 @@ const TokenService = {
     window.localStorage.setItem('currentUser', token)
   },
   getAuthToken() {
-    window.localStorage.getItem('currentUser')
+    return window.localStorage.getItem('currentUser')
   },
   clearAuthToken() {
     window.localStorage.removeItem('currentUser')
   },
   hasAuthToken() {
-    return !TokenService.getAuthToken();
+    return !!TokenService.getAuthToken();
   }
 }
 

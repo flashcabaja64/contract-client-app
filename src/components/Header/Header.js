@@ -9,6 +9,7 @@ const Header = () => {
   const User = useContext(UserContext)
 
   const renderLogoutLink = () => {
+    console.log(TokenService.hasAuthToken())
     return (
       <>
         <Nav.Link 
@@ -23,6 +24,7 @@ const Header = () => {
   };
 
   const renderLoginLink = () => {
+    console.log(TokenService.hasAuthToken())
     return (
       <>
         <Nav.Link as={Link} to='/login'>Login</Nav.Link>
