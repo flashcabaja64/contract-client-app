@@ -6,11 +6,11 @@ export const UserContext = createContext()
 export const UserProvider = props => {
 
   const processLogin = (token) => {
-    TokenService.saveAuthToken(token)
+    TokenService.saveAuthToken(token);
   }
 
   const processLogout = () => {
-    TokenService.clearAuthToken()
+    TokenService.clearAuthToken();
   }
 
   const value = {

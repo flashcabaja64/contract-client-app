@@ -1,12 +1,16 @@
+import './Header.css'
 import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import TokenService from '../services/TokenService';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Header.css'
 
 const Header = () => {
   const User = useContext(UserContext)
+
+  const handleLogout = () => {
+    User.processLogout()
+  }
 
   const renderLogoutLink = () => {
     console.log(TokenService.hasAuthToken())
@@ -15,7 +19,7 @@ const Header = () => {
         <Nav.Link 
           as={Link} 
           to='/'
-          onClick={() => User.processLogout()}
+          onClick={handleLogout}
         >
           Logout
         </Nav.Link>

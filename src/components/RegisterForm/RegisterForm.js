@@ -100,10 +100,10 @@ const RegisterForm = () => {
                   </Form.Group>
                   {errors.userName && <ValidationError message={errors.userName}/>}
 
-                  <Form.Group controlId="email">
+                  <Form.Group controlId="primaryEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
-                      type="email"
+                      type="text"
                       placeholder="Enter Email"
                       value={values.primaryEmail}
                       onChange={handleChange}
