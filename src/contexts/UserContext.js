@@ -5,17 +5,22 @@ export const UserContext = createContext()
 
 export const UserProvider = props => {
 
+  const [data, setAuthData] = React.useState(null);
+
   const processLogin = (token) => {
     TokenService.saveAuthToken(token);
+    setAuthData(token);
   }
 
   const processLogout = () => {
     TokenService.clearAuthToken();
+    setAuthData(null);
   }
 
   const value = {
     processLogin,
-    processLogout
+    processLogout,
+    data,
   }
 
   return (
