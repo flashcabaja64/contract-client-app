@@ -13,7 +13,6 @@ const Header = () => {
   }
 
   const renderLogoutLink = () => {
-    console.log(TokenService.hasAuthToken())
     return (
       <>
         <Nav.Link 
@@ -28,7 +27,6 @@ const Header = () => {
   };
 
   const renderLoginLink = () => {
-    console.log(TokenService.hasAuthToken())
     return (
       <>
         <Nav.Link as={Link} to='/login'>Login</Nav.Link>
@@ -44,9 +42,9 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" fixed="sticky">
         <Navbar.Brand href="/">Contract</Navbar.Brand>
           <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              {/* <Nav.Link as={Link} to="/">Home</Nav.Link>
               <Nav.Link as={Link} to='/features'>Features</Nav.Link>
-              <Nav.Link as={Link} to='/about'>About</Nav.Link>
+              <Nav.Link as={Link} to='/about'>About</Nav.Link> */}
           </Nav>
           <Nav>
             {TokenService.hasAuthToken() 

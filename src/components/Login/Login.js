@@ -5,7 +5,6 @@ import { useFormFields } from '../../libs/hooksLib';
 import ApiService from '../services/ApiService'
 import { UserContext } from '../../contexts/UserContext'
 import ValidationError from '../validations/ValidationError';
-import TokenService from '../services/TokenService'
 
 const Login = ({onSuccessLogin}) => {
   const [fields, handleFieldChange] = useFormFields({
@@ -27,7 +26,6 @@ const Login = ({onSuccessLogin}) => {
       }
       console.log(data);
     }).then(() => {
-      TokenService.hasAuthToken();
       onSuccessLogin()
     })
   }
