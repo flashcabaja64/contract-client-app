@@ -8,7 +8,6 @@ import LoginPage from './pages/LoginPage'
 import RegisterForm from './components/RegisterForm/RegisterForm';
 import Home from './pages/Home';
 import Features from './components/Features/Features';
-import SideNav from './components/Nav/SideNav';
 
 import './App.css';
 
@@ -16,7 +15,6 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <SideNav />
       <Switch>
         <Route exact path="/" component={Home}/>
         <PrivateRoute exact path="/features" component={Features}/>
