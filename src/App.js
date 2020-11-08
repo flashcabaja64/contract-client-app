@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import PublicRoute from './routes/PublicRoute';
+//import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 
 import Header from './components/Header/Header';
@@ -17,7 +17,7 @@ function App() {
       <Header/>
       <Switch>
         <Route exact path="/" component={Home}/>
-        <PrivateRoute exact path="/features" component={Features}/>
+        <PrivateRoute exact path="/forms" component={Features}/>
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path="/register" component={RegisterForm}/>
       </Switch>

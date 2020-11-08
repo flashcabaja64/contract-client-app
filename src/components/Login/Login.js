@@ -46,7 +46,6 @@ const Login = ({onSuccessLogin}) => {
               > 
               </Form.Control>
             </Form.Group>
-
             <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control

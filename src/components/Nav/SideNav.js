@@ -5,7 +5,7 @@ import * as AiIcons from 'react-icons/ai';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const SideNav = ({ sidebar, showSideBar}) => {
+const SideNav = ({ sidebar, showSideBar }) => {
   // https://azouaoui-med.github.io/react-pro-sidebar/
 
   return (
@@ -24,7 +24,7 @@ const SideNav = ({ sidebar, showSideBar}) => {
             </Link>
           </li>
           <li className="nav-text">
-            <Link to="/features">
+            <Link to="/forms">
               <AiIcons.AiOutlineForm />
               <span>Forms</span>
             </Link>

@@ -1,3 +1,7 @@
-/* a {
-  color:white !important;
-} */
+.menu-bars {
+  font-size: 1.5rem;
+  background: none;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+

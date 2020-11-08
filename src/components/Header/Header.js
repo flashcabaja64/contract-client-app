@@ -44,24 +44,21 @@ const Header = () => {
   return (
     <>
       <Navbar bg="dark" variant="dark" fixed="sticky">
-        <div className="navbar">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSideBar} />
-            <Navbar.Brand href="/">Contract</Navbar.Brand>
           </Link>
-        </div>
-        
-          <Nav className="mr-auto">
-              {/* <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to='/features'>Features</Nav.Link>
-              <Nav.Link as={Link} to='/about'>About</Nav.Link> */}
-          </Nav>
-          <Nav>
-            {TokenService.hasAuthToken() 
-              ? renderLogoutLink() 
-              : renderLoginLink()
-            }
-          </Nav>
+          <Navbar.Brand href="/">Contract</Navbar.Brand>
+        <Nav className="mr-auto">
+            {/* <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to='/features'>Features</Nav.Link>
+            <Nav.Link as={Link} to='/about'>About</Nav.Link> */}
+        </Nav>
+        <Nav>
+          {TokenService.hasAuthToken() 
+            ? renderLogoutLink() 
+            : renderLoginLink()
+          }
+        </Nav>
       </Navbar>
       <SideNav 
         sidebar={sidebar}

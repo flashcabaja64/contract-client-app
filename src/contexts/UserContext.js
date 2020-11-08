@@ -1,11 +1,11 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import TokenService from '../components/services/TokenService'
 
 export const UserContext = createContext()
 
 export const UserProvider = props => {
 
-  const [data, setAuthData] = React.useState(null);
+  const [data, setAuthData] = useState(null);
 
   const processLogin = (token) => {
     TokenService.saveAuthToken(token);
@@ -20,7 +20,7 @@ export const UserProvider = props => {
   const value = {
     processLogin,
     processLogout,
-    data,
+    data
   }
 
   return (
