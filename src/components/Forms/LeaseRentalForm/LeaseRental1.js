@@ -3,15 +3,15 @@ import { Card, Form, Button, Col} from 'react-bootstrap';
 import states from '../../../libs/store';
 import './LeaseRental1.css'
 
-const LeaseRental1 = ({ nextPage }) => {
+const LeaseRental1 = ({ nextPage, prevPage }) => {
 
-  function next(e) {
-    //e.preventDefault();
-    nextPage();
-  }
+  function next(e) { nextPage(); }
+  function prev(e) { prevPage(); }
 
   return (
     <Card.Body>
+      <Card.Title>Property Information</Card.Title>
+      <Card.Subtitle className="mb-2">Address</Card.Subtitle>
       <Form.Row>
         <Form.Group as={Col} sm="12">
           <Form.Label>Full Name</Form.Label>
@@ -24,10 +24,20 @@ const LeaseRental1 = ({ nextPage }) => {
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} sm="12">
-          <Form.Label>Address</Form.Label>
+          <Form.Label>Street Address</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Address"
+            placeholder="Street Address"
+          >    
+          </Form.Control>
+        </Form.Group>
+      </Form.Row>
+      <Form.Row>
+        <Form.Group as={Col} sm="12">
+          <Form.Label>Address 2</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Address 2"
           >    
           </Form.Control>
         </Form.Group>
@@ -63,9 +73,29 @@ const LeaseRental1 = ({ nextPage }) => {
           </Form.Control>
         </Form.Group>
       </Form.Row>
+      <Card.Subtitle className="mb-2 mt-2">Appliances</Card.Subtitle>
+      <Form.Row>
+        <Form.Group as={Col} sm="12">
+          <Form.Label>List the appliances below</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder="Max characters: 77"
+            style={{ resize: 'none'}}
+            maxLength="77"
+            rows={2}
+          >    
+          </Form.Control>
+        </Form.Group>
+      </Form.Row>
       <Form.Group className="text-center">
         <Button 
           variant="primary" 
+          type="button"
+          onClick={prev}
+        >Previous
+        </Button>
+        <Button 
+          variant="success" 
           type="button"
           onClick={next}
         >Continue

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Container } from 'react-bootstrap';
+import LeaseRental0 from '../components/Forms/LeaseRentalForm/LeaseRental0';
 import LeaseRental1 from '../components/Forms/LeaseRentalForm/LeaseRental1';
 
 const LeaseRentalFormPage = () => {
@@ -11,21 +12,16 @@ const LeaseRentalFormPage = () => {
   function loadPage(step) {
     switch(step) {
       case 1:
-        return (
-          <LeaseRental1 
-            nextPage={nextStep}
-          />
-        )
+        return <LeaseRental0 nextPage={nextStep} />
       case 2:
-        return <h1>Form2</h1>
+        return <LeaseRental1 nextPage={nextStep} prevPage={prevStep} />
     }
   }
     
-
   return (
     <Container fluid className="d-flex justify-content-center align-items-center">
-      <Card style={{ width: '30rem'}}>
-        {loadPage(step)}
+      <Card style={{ width: '35rem' }}>
+        { loadPage(step) }
       </Card>
     </Container>
   )
