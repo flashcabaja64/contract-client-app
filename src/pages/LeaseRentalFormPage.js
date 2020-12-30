@@ -9,12 +9,19 @@ const LeaseRentalFormPage = () => {
   function nextStep() { setStep(step + 1) }
   function prevStep() { setStep(step - 1) }
 
+  const validationStyle = {
+    'color':'red',
+    'fontSize': '0.8em',
+    'marginBottom': '5px',
+    'position':'relative'
+  }
+
   function loadPage(step) {
     switch(step) {
       case 1:
         return <LeaseRental0 nextPage={nextStep} />
       case 2:
-        return <LeaseRental1 nextPage={nextStep} prevPage={prevStep} />
+        return <LeaseRental1 nextPage={nextStep} prevPage={prevStep} errorStyle={validationStyle} />
     }
   }
     
