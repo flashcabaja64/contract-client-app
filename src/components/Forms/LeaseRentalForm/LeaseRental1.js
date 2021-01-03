@@ -54,7 +54,6 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
               </Field>
               <ErrorMessage name="fullName">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
             </Form.Group>
-            
           </Form.Row>
 
           <Form.Row>
@@ -69,7 +68,6 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
               </Field>
               <ErrorMessage name="streetAddress">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
             </Form.Group>
-            
           </Form.Row>
 
           <Form.Row>
@@ -96,7 +94,6 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
               >    
               </Field>
               <ErrorMessage name="city">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
-              
             </Form.Group>
             
             <Form.Group as={Col} sm="2">

@@ -17,11 +17,17 @@ const LeaseRentalFormPage = () => {
   }
 
   function loadPage(step) {
+    let leaseProps = {
+      nextPage: nextStep,
+      prevPage: prevStep,
+      errorStyle: validationStyle
+    }
+
     switch(step) {
       case 1:
         return <LeaseRental0 nextPage={nextStep} />
       case 2:
-        return <LeaseRental1 nextPage={nextStep} prevPage={prevStep} errorStyle={validationStyle} />
+        return <LeaseRental1 {...leaseProps} />
     }
   }
     

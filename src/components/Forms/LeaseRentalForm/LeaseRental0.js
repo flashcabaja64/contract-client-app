@@ -14,6 +14,12 @@ const LeaseRental0 = ({ nextPage }) => {
     nextPage();
   }
 
+  const radioOptions = [
+    { key: 'typeAgreement', value: 'standard', label: 'Standard Residential Lease' },
+    { key: 'typeAgreement', value: 'month', label: 'Month-to-Month Lease (Tenancy at Will)' }
+  ]
+
+
   return (
     <Card.Body>
       <Card.Title>Type of Agreement</Card.Title>
