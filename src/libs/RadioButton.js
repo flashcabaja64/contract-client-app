@@ -2,32 +2,35 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Field } from 'formik';
 
-const RadioButton = ({ label, name, options, ...rest }) => {
+const RadioButton = ({ name, options, click, ...rest }) => {
   return (
-    <div className="form-control">
-      <Field name={name} {...rest}>
-        {
-          ({ field }) => {
-            return options.map(option => {
-              return (
-                <React.Fragment key={option.key}>
-                  <Form.Check 
-                    type="radio" 
-                    id={option.value}
-                    {...field}
-                    value={option.value}
-                    label={option.key}
-                    name={option.value}
-                    checked={field.value === option.value}
+    <Field name={name} {...rest}>
+      {
+        ({ field, form }) => {
+          const {setFieldValue} = form
+          return options.map((option, i) => {
+            console.log('Value: ',option.value)
+            console.log('Field: ',field)
+            return (
+              <React.Fragment key={i}>
+                <Form.Check 
+                  type="radio" 
+                  {...field}
+                  value={option.value}
+                  label={option.label}
+                  id={option.id}
+                  name={option.key}
+                  checked={field.value === option.value}
+                  onChange={click}
+                  onClick={val => setFieldValue(name, val.target.value)}
                 >
                 </Form.Check>
-                </React.Fragment>
-              )
-            })
-          }
+              </React.Fragment>
+            )
+          })
         }
-      </Field>
-    </div>
+      }
+    </Field>
   )
 }
 
