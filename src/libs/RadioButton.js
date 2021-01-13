@@ -7,10 +7,8 @@ const RadioButton = ({ name, options, click, ...rest }) => {
     <Field name={name} {...rest}>
       {
         ({ field, form }) => {
-          const {setFieldValue} = form
+          const { setFieldValue } = form;
           return options.map((option, i) => {
-            console.log('Value: ',option.value)
-            console.log('Field: ',field)
             return (
               <React.Fragment key={i}>
                 <Form.Check 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Col, Button } from 'react-bootstrap';
 import { Formik, Field, ErrorMessage } from 'formik';
-import RadioButton from '../../../libs/RadioButton'
+import RadioButton from '../../../libs/RadioButton';
 import DatePicker from "react-datepicker";
 
 const LeaseRental0 = ({ nextPage }) => {
