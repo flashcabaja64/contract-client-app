@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
 import { Card, Form, Col, Button } from 'react-bootstrap';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import RadioButton from '../../../libs/RadioButton';
-import DatePicker from "react-datepicker";
+import DatePicker from '../../../libs/DatePicker';
 
-const LeaseRental0 = ({ nextPage }) => {
+const LeaseRental0 = ({ nextPage, errorStyle }) => {
   const [agree, setAgree] = useState('');
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  // const [startDate, setStartDate] = useState(null);
+  // const [endDate, setEndDate] = useState(null);
 
   const radioOnClick = (e) => { setAgree(e.target.value) }
 
-  const next = (e) => {
-    //e.preventDefault();
-    nextPage();
-  }
+  // const next = (e) => {
+  //   //e.preventDefault();
+  //   nextPage();
+  // }
 
   const initialValues = {
     typeAgreement: '',
     start_date: null,
+    end_date: null,
     agreement_date: null
   }
 
+  const validationSchema = Yup.object({
+    typeAgreement: Yup.string().required('Please choose an option'),
+    start_date: Yup.date().required('Required').nullable(),
+    end_date: Yup.date().required('Required').nullable()
+  })
+
   const onSubmit = values => {
     console.log(values)
+    // alert(JSON.stringify(values, null, 2));
+    nextPage();
   }
 
   const radioOptions = [
@@ -31,24 +41,24 @@ const LeaseRental0 = ({ nextPage }) => {
     { key: 'typeAgreement', value: 'month', id: 'agree_month', label: 'Month-to-Month Lease (Tenancy at Will)' }
   ]
 
-
   return (
     <Card.Body>
       <Card.Title>Type of Agreement</Card.Title>
       <Formik
         initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {formik => (
-          <Form onSubmit={formik.handleSubmit}>
+      {formik => (
+        <Form onSubmit={formik.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} sm="12">
               <RadioButton
                 name={radioOptions[0].key}
                 options={radioOptions}
                 click={radioOnClick}
-              />
-              
+              /> 
+              <ErrorMessage name="typeAgreement">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
               {/* <Form.Check
                 type="radio"
                 id="agree_standard"
@@ -76,7 +86,7 @@ const LeaseRental0 = ({ nextPage }) => {
               <Form.Group as={Col} sm="6">
                 <Form.Label>Start Date</Form.Label>
                 <Form.Group>
-                  <DatePicker 
+                  {/* <DatePicker 
                     selected={startDate}
                     showYearDropdown
                     showMonthDropdown
@@ -84,7 +94,12 @@ const LeaseRental0 = ({ nextPage }) => {
                     placeholderText="Click to select Start Date"
                     className="form-control"
                     onChange={date => setStartDate(date)}
+                  /> */}
+                  <DatePicker 
+                    name="start_date"
+                    label="Pick a start date"
                   />
+                  <ErrorMessage name="start_date">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
                 </Form.Group>
               </Form.Group>
               <Form.Group as={Col} sm="6">
@@ -99,6 +114,11 @@ const LeaseRental0 = ({ nextPage }) => {
                     className="form-control"
                     onChange={date => setEndDate(date)}
                   /> */}
+                  <DatePicker 
+                    name="end_date"
+                    label="Pick a end date"
+                  />
+                  <ErrorMessage name="end_date">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
                 </Form.Group>
               </Form.Group>
             </Form.Row>
@@ -117,12 +137,17 @@ const LeaseRental0 = ({ nextPage }) => {
                     className="form-control"
                     onChange={date => setStartDate(date)}
                   /> */}
+                  <DatePicker 
+                    name="start_date"
+                    label="Pick a start date"
+                  />
+                  <ErrorMessage name="start_date">{msg => <div style={errorStyle}>{msg}</div>}</ErrorMessage>
                 </Form.Group>
               </Form.Group>
               <Form.Group as={Col} sm="6">
                 <Form.Label>Number of Days required to cancel</Form.Label>
                 <Form.Group as={Col} xs="6" className='pl-0'>
-                  <Form.Control type="number" value="30" />
+                  {/* <Form.Control type="number" value="30" /> */}
                 </Form.Group>
               </Form.Group>
               <Form.Text className="text-muted">
@@ -130,17 +155,16 @@ const LeaseRental0 = ({ nextPage }) => {
               </Form.Text>
             </Form.Row>
           )}
-          
           <Form.Group className="text-center mt-2">
             <Button 
               variant="primary" 
-              type="button"
-              onClick={next}
+              type="submit"
+              // onClick={next}
             >Continue
             </Button>
           </Form.Group>
-          </Form>
-        )}
+        </Form>
+      )}
       </Formik>
     </Card.Body>
   )

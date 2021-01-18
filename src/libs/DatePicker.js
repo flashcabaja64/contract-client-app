@@ -15,7 +15,9 @@ const DatePicker = ({ label, name, ...rest }) => {
               showMonthDropdown
               dropdownMode="select"
               className="form-control"
-              id={name}
+              autoComplete="off"
+              placeholderText={label}
+              name={name}
               { ...field }
               { ...rest }
               selected={value}

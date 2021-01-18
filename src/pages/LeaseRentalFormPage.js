@@ -25,7 +25,7 @@ const LeaseRentalFormPage = () => {
 
     switch(step) {
       case 1:
-        return <LeaseRental0 nextPage={nextStep} />
+        return <LeaseRental0 nextPage={nextStep} errorStyle={validationStyle} />
       case 2:
         return <LeaseRental1 {...leaseProps} />
     }
