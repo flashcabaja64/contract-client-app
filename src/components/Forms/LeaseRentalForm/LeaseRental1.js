@@ -7,7 +7,6 @@ import './LeaseRental1.css'
 
 const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
 
-  function next(e) { nextPage(); }
   function prev(e) { prevPage(); }
 
   const validationSchema = Yup.object({
@@ -29,6 +28,7 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
 
   const onSubmit = values => {
     console.log(values)
+    nextPage();
   }
 
   return (
@@ -152,9 +152,7 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
             </Button>
             <Button 
               variant="success" 
-              type='submit'
-              // type="button"
-              // onClick={next}
+              type="submit"
             >Continue
             </Button>
           </Form.Group>

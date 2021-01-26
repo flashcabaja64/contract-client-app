@@ -12,10 +12,6 @@ const LeaseRental0 = ({ nextPage, errorStyle }) => {
 
   const radioOnClick = (e) => { setAgree(e.target.value) }
 
-  // const next = (e) => {
-  //   //e.preventDefault();
-  //   nextPage();
-  // }
 
   const initialValues = {
     typeAgreement: '',
@@ -159,7 +155,6 @@ const LeaseRental0 = ({ nextPage, errorStyle }) => {
             <Button 
               variant="primary" 
               type="submit"
-              // onClick={next}
             >Continue
             </Button>
           </Form.Group>
