@@ -6,7 +6,6 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const SideNav = ({ sidebar, showSideBar }) => {
-  // https://azouaoui-med.github.io/react-pro-sidebar/
 
   return (
     <>

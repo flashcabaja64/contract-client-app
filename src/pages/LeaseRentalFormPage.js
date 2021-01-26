@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Container } from 'react-bootstrap';
 import LeaseRental0 from '../components/Forms/LeaseRentalForm/LeaseRental0';
 import LeaseRental1 from '../components/Forms/LeaseRentalForm/LeaseRental1';
+import LeaseRental2 from '../components/Forms/LeaseRentalForm/LeaseRental2';
 
 const LeaseRentalFormPage = () => {
   const [step, setStep] = useState(1);
@@ -28,6 +29,8 @@ const LeaseRentalFormPage = () => {
         return <LeaseRental0 nextPage={nextStep} errorStyle={validationStyle} />
       case 2:
         return <LeaseRental1 {...leaseProps} />
+      case 3:
+        return <LeaseRental2 {...leaseProps} />
     }
   }
     

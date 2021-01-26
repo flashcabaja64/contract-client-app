@@ -153,8 +153,8 @@ const LeaseRental1 = ({ nextPage, prevPage, errorStyle }) => {
             <Button 
               variant="success" 
               type='submit'
-              // type="button"
-              // onClick={next}
+              //type="button"
+              onClick={next}
             >Continue
             </Button>
           </Form.Group>
