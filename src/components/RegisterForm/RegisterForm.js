@@ -1,11 +1,11 @@
-import './RegisterForm.css'
+import './RegisterForm.css';
 import React, { useState } from 'react';
 import { Form, Container, Button, Card, Row } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import useForm from '../../libs/useForm';
 import validateRegister from '../validations/validateRegister';
 import ValidationError from '../validations/ValidationError';
-import ApiService from '../services/ApiService.js'
+import ApiService from '../services/ApiService.js';
 
 const RegisterForm = () => {
   const { handleChange, handleSubmit, values, errors } = useForm(
@@ -20,8 +20,8 @@ const RegisterForm = () => {
     submit,
     validateRegister
   )
-  const history = useHistory()
-  const [resStatus, setResStatus] = useState('')
+  const history = useHistory();
+  const [resStatus, setResStatus] = useState('');
 
   function submit() {
     ApiService.postRegister({
@@ -32,15 +32,15 @@ const RegisterForm = () => {
       password: values.password
     }).then(data => {
       console.log(data)
-      if(data.toLowerCase().includes('failure')) {
-        setResStatus('Email has already been registered')
+      if(data.toLowerCase().includes('failure') || data.description) {
+        setResStatus(`${data.description}`)
         //return history.push('/')
       } else if(data.toLowerCase().includes('success')) {
-        console.log(resStatus)
-        setResStatus('Email registration successful. Redirecting you to the Login page')
+        //console.log(resStatus)
+        setResStatus('Email registration successful. Redirecting you to the Login page.')
         setTimeout(() => history.push('/login'), 3000)
       } 
-    })
+    }).catch(err => console.log(err))
   }
 
   return (

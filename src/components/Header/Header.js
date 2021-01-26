@@ -1,5 +1,6 @@
 import './Header.css'
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import SideNav from '../Nav/SideNav';
 import { UserContext } from '../../contexts/UserContext';
 import TokenService from '../services/TokenService';
@@ -8,12 +9,14 @@ import * as FaIcons from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const User = useContext(UserContext)
+  const User = useContext(UserContext);
+  const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
-  const showSideBar = () => setSidebar(!sidebar)
+  const showSideBar = () => setSidebar(!sidebar);
   
-  const handleLogout = () => {
-    User.processLogout()
+  const handleLogout = () => {  
+    User.processLogout();
+    history.push('/login');
   }
 
   const renderLogoutLink = () => {
