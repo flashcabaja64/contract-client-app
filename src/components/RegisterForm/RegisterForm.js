@@ -31,8 +31,8 @@ const RegisterForm = () => {
       primaryEmail: values.primaryEmail,
       password: values.password
     }).then(data => {
-      console.log(data)
-      if(data.toLowerCase().includes('failure') || data.description) {
+      //console.log(data)
+      if(data.description.length !== '') {
         setResStatus(`${data.description}`)
         //return history.push('/')
       } else if(data.toLowerCase().includes('success')) {
